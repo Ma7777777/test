@@ -62,7 +62,7 @@
     [self.contentView addSubview:descLabel];
     
     //容量label
-    UILabel *capacityLabel = [UILabel cz_labelWithText:@"400-450g/盒" fontSize:14 color:[UIColor cz_colorWithHex:0x898989]];
+    UILabel *capacityLabel = [UILabel cz_labelWithText:@"400-450g/盒" fontSize:13 color:[UIColor cz_colorWithHex:0x898989]];
     
     _capacityLabel = capacityLabel;
     

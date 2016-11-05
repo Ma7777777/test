@@ -8,6 +8,8 @@
 
 #import "AXFClassifyCell.h"
 
+#define MARIGN 15
+
 @interface AXFClassifyCell ()
 
 @property (nonatomic,weak)UIView *lineView;
@@ -53,13 +55,25 @@
     
     
     //更多按钮
-//    UIButton *moreBtn = [UIButton cz_textButton:@"" fontSize:13 normalColor:[UIColor cz_colorWithHex:0x999999] selectedColor:nil];
-//    
-//    [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
-//    
-//    [moreBtn setImage:[UIImage imageNamed:@"icon_go"] forState:UIControlStateNormal];
-//    
-//    [self.contentView addSubview:moreBtn];
+    UIButton *moreBtn = [UIButton cz_textButton:@"" fontSize:13 normalColor:[UIColor cz_colorWithHex:0x999999] selectedColor:nil];
+    
+    [moreBtn setTitle:@"更多" forState:UIControlStateNormal];
+    
+    [moreBtn setImage:[UIImage imageNamed:@"icon_go"] forState:UIControlStateNormal];
+    
+//    moreBtn.titleLabel.backgroundColor = moreBtn.backgroundColor;
+//    moreBtn.imageView.backgroundColor = moreBtn.backgroundColor;
+    
+    
+    CGFloat titleWidth = moreBtn.titleLabel.frame.size.width;
+    
+    CGFloat imageWidth = moreBtn.imageView.frame.size.width;
+    
+    moreBtn.imageEdgeInsets = UIEdgeInsetsMake(0, titleWidth + MARIGN , 0, -(titleWidth + MARIGN));
+    
+    moreBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -(imageWidth + MARIGN), 0, imageWidth + MARIGN);
+    
+    [self.contentView addSubview:moreBtn];
     
     
     //MARK:布局
@@ -78,8 +92,14 @@
     [pictureView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lineView.mas_bottom).offset(13);
         make.left.offset(10);
-        make.right.offset(-10);
+        make.right.offset(-5);
         make.height.mas_equalTo(90);
+    }];
+    
+    [moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(-8);
+        make.baseline.equalTo(nameLabel);
+        make.width.mas_equalTo(30);
     }];
 }
 
